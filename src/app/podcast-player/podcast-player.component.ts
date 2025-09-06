@@ -91,25 +91,28 @@ export class PodcastPlayerComponent {
 
   // select episode mn el playlist
   selectEpisode(index: number) {
-    this.currentIndex = index;
-    this.currentEpisode = this.episodes[index];
+  this.currentIndex = index;
+  this.currentEpisode = this.episodes[index];
 
-    const audio = this.audioPlayer.nativeElement;
+  const audio = this.audioPlayer.nativeElement;
 
-    audio.pause();
-    audio.currentTime = 0;
+  audio.pause();
+  audio.currentTime = 0;
 
-    audio.src = this.currentEpisode.audio;
-    audio.load();
+  audio.src = this.currentEpisode.audio;
+  audio.load();
 
-    if (this.isPlaying) {
-      const playOnCanPlay = () => {
-        audio.play().catch(err => console.error('Error playing new episode:', err));
-        audio.removeEventListener('canplay', playOnCanPlay);
-      };
-      audio.addEventListener('canplay', playOnCanPlay);
-    }
+  if (this.isPlaying) {
+    const playOnCanPlay = () => {
+      audio.play().catch(err =>
+        console.error('Error playing new episode:', err)
+      );
+      audio.removeEventListener('canplay', playOnCanPlay);
+    };
+
+    audio.addEventListener('canplay', playOnCanPlay);
   }
+}
 
   private formatTime(sec: number): string {
     const minutes = Math.floor(sec / 60);

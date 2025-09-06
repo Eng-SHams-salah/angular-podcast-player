@@ -39,6 +39,7 @@
   <!-- audio -->
   <audio
     #audioPlayer
+    preload="auto"
     [src]="currentEpisode.audio"
     (timeupdate)="updateProgress()"
     (loadedmetadata)="loadMeta()"
