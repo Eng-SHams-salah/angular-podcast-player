@@ -1,0 +1,116 @@
+// 🎨 Variables
+$primary: #00f0ff;
+$secondary: #ff00ff;
+$bg: #0d0d0d;
+$text: #fff;
+$text-muted: #ccc;
+$text-light: #aaa;
+
+.player-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: $bg;
+  border-radius: 20px;
+  box-shadow: 0 0 20px $primary, 0 0 40px $secondary;
+  color: $text;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+
+  .cover {
+    img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px $primary;
+    }
+  }
+
+  .episode-info {
+    margin: 1rem 0;
+
+    h2 {
+      font-size: 1.2rem;
+      color: $primary;
+      text-shadow: 0 0 5px $primary;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $text-muted;
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1rem 0;
+
+    button {
+      background: none;
+      border: none;
+      color: $text;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, color 0.3s ease;
+
+      &:hover {
+        transform: scale(1.2);
+        color: $secondary;
+        text-shadow: 0 0 10px $secondary;
+      }
+    }
+  }
+
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input[type='range'] {
+      flex: 1;
+      accent-color: $primary;
+    }
+
+    span {
+      font-size: 0.8rem;
+      color: $text-light;
+    }
+  }
+
+  .episode-list {
+    margin-top: 1.5rem;
+    text-align: left;
+
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: $secondary;
+      text-shadow: 0 0 5px $secondary;
+    }
+
+    .episode {
+      padding: 0.5rem;
+      margin-bottom: 0.4rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+
+      &:hover {
+        background: rgba($secondary, 0.1);
+        transform: translateX(5px);
+      }
+
+      &.active {
+        background: rgba($primary, 0.2);
+        color: $primary;
+        font-weight: bold;
+      }
+
+      h4 {
+        margin: 0;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

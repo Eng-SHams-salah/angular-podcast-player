@@ -1,0 +1,59 @@
+<div class="player-container">
+  <div class="cover">
+    <img [src]="currentEpisode.cover" alt="Podcast Cover" />
+  </div>
+
+  <!-- episode info -->
+  <div class="episode-info">
+    <h2>{{ currentEpisode.title }}</h2>
+    <p>{{ currentEpisode.hosts }}</p>
+  </div>
+
+  <!-- audio Controls -->
+  <div class="controls">
+    <button (click)="prevEpisode()" aria-label="Previous">
+      <i class="fas fa-backward"></i>
+    </button>
+
+    <button (click)="togglePlay()" aria-label="Play/Pause">
+      <i class="fas" [ngClass]="isPlaying ? 'fa-pause' : 'fa-play'"></i>
+    </button>
+
+    <button (click)="nextEpisode()" aria-label="Next">
+      <i class="fas fa-forward"></i>
+    </button>
+  </div>
+
+  <!-- progress bar -->
+  <div class="progress-bar">
+    <span>{{ currentTime }}</span>
+    <input
+      type="range"
+      [max]="duration"
+      [value]="progress"
+      (input)="seekAudio($event)"
+    />
+    <span>{{ totalTime }}</span>
+  </div>
+
+  <!-- audio -->
+  <audio
+    #audioPlayer
+    [src]="currentEpisode.audio"
+    (timeupdate)="updateProgress()"
+    (loadedmetadata)="loadMeta()"
+  ></audio>
+
+  <!-- playlist -->
+  <div class="episode-list">
+    <h3>Episodes</h3>
+    <div
+      *ngFor="let ep of episodes; let i = index"
+      class="episode"
+      [class.active]="i === currentIndex"
+      (click)="selectEpisode(i)"
+    >
+      <h4>{{ ep.title }}</h4>
+    </div>
+  </div>
+</div>
